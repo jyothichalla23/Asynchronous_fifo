@@ -1,4 +1,4 @@
-module rd_ptr_logic #(parameter DEPTH = 32, DATA_WIDTH = 32, ADDR_WIDTH = $clog2(DEPTH);)
+module rd_ptr_logic #(parameter DEPTH = 32, DATA_WIDTH = 32, ADDR_WIDTH = $clog2(DEPTH))
 (
     input rd_clk,
     input rd_rst_n,
@@ -9,8 +9,8 @@ module rd_ptr_logic #(parameter DEPTH = 32, DATA_WIDTH = 32, ADDR_WIDTH = $clog2
     output reg [ADDR_WIDTH:0] bin_rd_ptr, gray_rd_ptr
 );
 
-reg output [ADDR_WIDTH:0] bin_rd_ptr_next, gray_rd_ptr_next;
-reg empty_next;
+wire [ADDR_WIDTH:0] bin_rd_ptr_next, gray_rd_ptr_next;
+wire empty_next;
 
 assign bin_rd_ptr_next  = bin_rd_ptr+(rd_en & !empty);
 assign gray_rd_ptr_next = (bin_rd_ptr_next>>1)^bin_rd_ptr_next;
